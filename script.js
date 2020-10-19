@@ -1,93 +1,93 @@
-    const board = document.querySelector('.board')
-    const columns = ['A', 'B','C','D','E','F','G','H']
-    const rows = [8,7,6,5,4,3,2,1]
+const board = document.querySelector('.board')
+const columns = ['A', 'B','C','D','E','F','G','H']
+const rows = [8,7,6,5,4,3,2,1]
 
-    class Piece {
-        constructor(positionC, positionR){
-            this.positionC = positionC
-            this.positionR = positionR
-            this.position = positionC + positionR 
-            this.square =  document.querySelector(`#${this.position}`)
-        }
-        
+class Piece {
+    constructor(positionC, positionR){
+        this.positionC = positionC
+        this.positionR = positionR
+        this.position = positionC + positionR 
+        this.square =  document.querySelector(`#${this.position}`)
+    }
+    
+}
+
+class Pawn extends Piece {
+   
+    addWhitePawn(){
+        this.square.innerHTML = `<img class="pieces" src="/pics/whitepawn.jpg"/>`
     }
 
-    class Pawn extends Piece {
-       
-        addWhitePawn(){
-            this.square.innerHTML = `<img class="pieces" src="/white_pawn.png"/>`
-        }
-    
-        addBlackPawn(){
-            this.square.innerHTML = `<img class="pieces" src="/blackpawn.png"/>`
-        }
-        
+    addBlackPawn(){
+        this.square.innerHTML = `<img class="pieces" src="/pics/blackpawn.jpg"/>`
     }
     
-    class Rook extends Piece{
+}
+
+class Rook extends Piece{
+
+    addBlackRook(){
+        this.square.innerHTML = `<img class="bigPieces" src="/pics/blackrook.jpg"/>`
+    }
+    addWhiteRook(){
+        this.square.innerHTML = `<img class="bigPieces" src="/pics/whiterook.jpg"/>`
+    }
+
+}
+class Knight extends Piece {
     
-        addBlackRook(){
-            this.square.innerHTML = `<img class="bigPieces" src="/blackrook.jpg"/>`
-        }
-        addWhiteRook(){
-            this.square.innerHTML = `<img class="bigPieces" src="/white-rook.jpg"/>`
-        }
+    addBlackKnight(){
+        this.square.innerHTML = `<img class="bigPieces" src="/pics/blackknight.jpg"/>`
+    }
+    addWhiteKnight(){
+        this.square.innerHTML = `<img class="bigPieces" src="/pics/whiteknight.jpg"/>`
+    }
+}
+class Bishop extends Piece{
     
+    addBlackBishop(){
+        this.square.innerHTML = `<img class="bigPieces" src="/pics/blackbishop.jpg"/>`
     }
-    class Knight extends Piece {
-        
-        addBlackKnight(){
-            this.square.innerHTML = `<img class="bigPieces" src="/blackknight.jpg"/>`
-        }
-        addWhiteKnight(){
-            this.square.innerHTML = `<img class="bigPieces" src="/whiteknight.jpg"/>`
-        }
+    addWhiteBishop(){
+        this.square.innerHTML = `<img class="bigPieces" src="/pics/whitebishop.png"/>`
     }
-    class Bishop extends Piece{
-        
-        addBlackBishop(){
-            this.square.innerHTML = `<img class="bigPieces" src="/blackbishop.jpg"/>`
-        }
-        addWhiteBishop(){
-            this.square.innerHTML = `<img class="bigPieces" src="/whitebishop.jpg"/>`
-        }
-    }
+}
+
+class Queen extends Piece {
     
-    class Queen extends Piece {
-        
-        addBlackQueen(){
-            this.square.innerHTML = `<img class="bigPieces" src="/blackqueen.png"/>`
-        }
-        addWhiteQueen(){
-            this.square.innerHTML = `<img class="bigPieces" src="/whitequeen.jpg"/>`
-        }
+    addBlackQueen(){
+        this.square.innerHTML = `<img class="bigPieces" src="/pics/blackqueen.jpg"/>`
     }
-    
-    class King extends Piece {
-        addBlackKing(){
-            this.square.innerHTML = `<img class="bigPieces" src="/blackking.jpg"/>`
-        }
-        addWhiteKing(){
-            this.square.innerHTML = `<img class="bigPieces" src="/whiteking.png"/>`
-        }
+    addWhiteQueen(){
+        this.square.innerHTML = `<img class="bigPieces" src="/pics/whitequeen.png"/>`
     }
+}
+
+class King extends Piece {
+    addBlackKing(){
+        this.square.innerHTML = `<img class="bigPieces" src="/pics/blackking.jpg"/>`
+    }
+    addWhiteKing(){
+        this.square.innerHTML = `<img class="bigPieces" src="/pics/whiteking.png"/>`
+    }
+}
 
 
 function createBoard() {
-    for(let i = 0; i < 8; i++){
-        const column = document.createElement('div')
-        for(let j = 0; j< 8; j++){
-            if(j%2===0 && i%2===0 || j%2!==0 && i%2!==0 ){
-                    column.setAttribute('class', `column${i+1}`)
-                    column.innerHTML += `<div id="${columns[i]}${rows[j]}" class="white"></div>`
-                    let square = document.querySelector(`#${columns[i]}${rows[j]}`)
-            } else {
-                    column.setAttribute('class', `column${i+1}`)
-                    column.innerHTML += `<div id="${columns[i]}${rows[j]}" class="black"></div>`
-            }
+for(let i = 0; i < 8; i++){
+    const column = document.createElement('div')
+    for(let j = 0; j< 8; j++){
+        if(j%2===0 && i%2===0 || j%2!==0 && i%2!==0 ){
+                column.setAttribute('class', `column${i+1}`)
+                column.innerHTML += `<div id="${columns[i]}${rows[j]}" class="white"></div>`
+                let square = document.querySelector(`#${columns[i]}${rows[j]}`)
+        } else {
+                column.setAttribute('class', `column${i+1}`)
+                column.innerHTML += `<div id="${columns[i]}${rows[j]}" class="black"></div>`
         }
-        board.appendChild(column)
-    }    
+    }
+    board.appendChild(column)
+}    
 
 const pawn1 = new Pawn('A',2)
 const pawn2 = new Pawn('B',2)
@@ -158,25 +158,25 @@ queen2.addWhiteQueen()
 let text = ''
 
 function addListeners() {
-    for(let i = 0; i < 8; i++){
-        for(let j = 0; j< 8; j++){
-            const square = document.querySelector(`#${columns[i]}${rows[j]}`)
-            square.addEventListener('click', function(event){
+for(let i = 0; i < 8; i++){
+    for(let j = 0; j< 8; j++){
+        const square = document.querySelector(`#${columns[i]}${rows[j]}`)
+        square.addEventListener('click', function(event){
 
-                const target = event.currentTarget
-                var img = target.innerHTML
+            const target = event.currentTarget
+            var img = target.innerHTML
 
-                if(img !== ''){
-                    text = img
-                    target.innerHTML = ''
-                }else {
-                    target.innerHTML = text
-                    text = ''
-                }
-                
-            })
-        }
-    }  
+            if(img !== ''){
+                text = img
+                target.innerHTML = ''
+            }else {
+                target.innerHTML = text
+                text = ''
+            }
+            
+        })
+    }
+}  
 }
 
 createBoard()
