@@ -15,60 +15,67 @@ class Piece {
 class Pawn extends Piece {
    
     addWhitePawn(){
-        this.square.innerHTML = `<img class="pieces" src="/pics/whitepawn.jpg"/>`
+        
+        this.square.innerHTML = `<img id="pawn${this.position}" class="pieces" src="/pics/whitepawn.jpg"/>`
+        
     }
 
     addBlackPawn(){
-        this.square.innerHTML = `<img class="pieces" src="/pics/blackpawn.jpg"/>`
+        this.square.innerHTML = `<img id="pawn${this.position}" class="pieces" src="/pics/blackpawn.jpg"/>`
     }
+
+    // move(){
+    //     const pawn = document.getElementById(`pawn${this.position}`)
+    //     pawn.addEventListener('click', firstClick)
+    // }
     
 }
 
 class Rook extends Piece{
 
     addBlackRook(){
-        this.square.innerHTML = `<img class="bigPieces" src="/pics/blackrook.jpg"/>`
+        this.square.innerHTML = `<img draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)" class="bigPieces" src="/pics/blackrook.jpg"/>`
     }
     addWhiteRook(){
-        this.square.innerHTML = `<img class="bigPieces" src="/pics/whiterook.jpg"/>`
+        this.square.innerHTML = `<img draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)" class="bigPieces" src="/pics/whiterook.jpg"/>`
     }
 
 }
 class Knight extends Piece {
     
     addBlackKnight(){
-        this.square.innerHTML = `<img class="bigPieces" src="/pics/blackknight.jpg"/>`
+        this.square.innerHTML = `<img draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)" class="bigPieces" src="/pics/blackknight.jpg"/>`
     }
     addWhiteKnight(){
-        this.square.innerHTML = `<img class="bigPieces" src="/pics/whiteknight.jpg"/>`
+        this.square.innerHTML = `<img draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)" class="bigPieces" src="/pics/whiteknight.jpg"/>`
     }
 }
 class Bishop extends Piece{
     
     addBlackBishop(){
-        this.square.innerHTML = `<img class="bigPieces" src="/pics/blackbishop.jpg"/>`
+        this.square.innerHTML = `<img draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)" class="bigPieces" src="/pics/blackbishop.jpg"/>`
     }
     addWhiteBishop(){
-        this.square.innerHTML = `<img class="bigPieces" src="/pics/whitebishop.png"/>`
+        this.square.innerHTML = `<img draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)" class="bigPieces" src="/pics/whitebishop.png"/>`
     }
 }
 
 class Queen extends Piece {
     
     addBlackQueen(){
-        this.square.innerHTML = `<img class="bigPieces" src="/pics/blackqueen.jpg"/>`
+        this.square.innerHTML = `<img draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)" class="bigPieces" src="/pics/blackqueen.jpg"/>`
     }
     addWhiteQueen(){
-        this.square.innerHTML = `<img class="bigPieces" src="/pics/whitequeen.png"/>`
+        this.square.innerHTML = `<img draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)" class="bigPieces" src="/pics/whitequeen.png"/>`
     }
 }
 
 class King extends Piece {
     addBlackKing(){
-        this.square.innerHTML = `<img class="bigPieces" src="/pics/blackking.jpg"/>`
+        this.square.innerHTML = `<img draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)" class="bigPieces" src="/pics/blackking.jpg"/>`
     }
     addWhiteKing(){
-        this.square.innerHTML = `<img class="bigPieces" src="/pics/whiteking.png"/>`
+        this.square.innerHTML = `<img draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)" class="bigPieces" src="/pics/whiteking.png"/>`
     }
 }
 
@@ -79,11 +86,10 @@ for(let i = 0; i < 8; i++){
     for(let j = 0; j< 8; j++){
         if(j%2===0 && i%2===0 || j%2!==0 && i%2!==0 ){
                 column.setAttribute('class', `column${i+1}`)
-                column.innerHTML += `<div id="${columns[i]}${rows[j]}" class="white"></div>`
-                let square = document.querySelector(`#${columns[i]}${rows[j]}`)
+                column.innerHTML += `<div id="${columns[i]}${rows[j]}" class="white dropzone"></div>`
         } else {
                 column.setAttribute('class', `column${i+1}`)
-                column.innerHTML += `<div id="${columns[i]}${rows[j]}" class="black"></div>`
+                column.innerHTML += `<div id="${columns[i]}${rows[j]}" class="black dropzone"></div>`
         }
     }
     board.appendChild(column)
@@ -153,6 +159,7 @@ king1.addBlackKing()
 king2.addWhiteKing()
 queen1.addBlackQueen()
 queen2.addWhiteQueen()
+// pawn1.move()
 }
 
 let text = ''
@@ -178,6 +185,15 @@ for(let i = 0; i < 8; i++){
     }
 }  
 }
+
+// function firstClick(){
+   
+//         const square1 = document.querySelector('#A3')
+//         const square2 = document.querySelector('#A4')
+//         square1.setAttribute('class', 'black active')
+//         square2.setAttribute('class', 'white active')
+
+// }
 
 createBoard()
 addListeners() 

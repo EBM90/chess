@@ -32,3 +32,9 @@
     width: 50px;
     height: 50px;
 }
+
+.active{
+    border: yellow 5px solid;
+    width: auto;
+    height: 70px;
+}
